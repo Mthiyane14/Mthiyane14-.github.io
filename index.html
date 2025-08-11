@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosipho | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a;
+            color: white;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, #4f46e5, #9333ea);
+            text-align: center;
+            padding: 80px 20px;
+        }
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            animation: glow 2s infinite alternate;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #fff, 0 0 20px #38bdf8, 0 0 30px #38bdf8; }
+            to { text-shadow: 0 0 20px #9333ea, 0 0 30px #9333ea, 0 0 40px #9333ea; }
+        }
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        nav {
+            background: #1e293b;
+            text-align: center;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #38bdf8;
+        }
+        section {
+            max-width: 1000px;
+            margin: auto;
+            padding: 50px 20px;
+        }
+        h2 {
+            color: #38bdf8;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        /* Project Cards */
+        .project {
+            background: #1e293b;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .project:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.5);
+        }
+        /* Skills */
+        .skills {
+            margin-top: 20px;
+        }
+        .skill {
+            margin-bottom: 15px;
+        }
+        .skill-name {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .progress-bar {
+            background: #1e293b;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .progress {
+            height: 12px;
+            background: linear-gradient(90deg, #38bdf8, #9333ea);
+            width: 0;
+            animation: fill 2s forwards;
+        }
+        @keyframes fill {
+            from { width: 0; }
+        }
+        footer {
+            background: #1e293b;
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+        a {
+            color: #38bdf8;
+        }
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Hi, I'm Nosipho</h1>
+        <p>Final Year Computer Science & ISTN Student | Aspiring Developer</p>
+    </header>
+
+    <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>
+            I’m passionate about technology, coding, and solving problems.
+            I enjoy building creative solutions — from interactive web applications to complex C++ systems.
+        </p>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills">
+            <div class="skill">
+                <div class="skill-name">C++</div>
+                <div class="progress-bar"><div class="progress" style="width: 90%"></div></div>
+            </div>
+            <div class="skill">
+                <div class="skill-name">Java</div>
+                <div class="progress-bar"><div class="progress" style="width: 80%"></div></div>
+            </div>
+            <div class="skill">
+                <div class="skill-name">HTML & CSS</div>
+                <div class="progress-bar"><div class="progress" style="width: 85%"></div></div>
+            </div>
+            <div class="skill">
+                <div class="skill-name">JavaScript</div>
+                <div class="progress-bar"><div class="progress" style="width: 70%"></div></div>
+            </div>
+            <div class="skill">
+                <div class="skill-name">SQL</div>
+                <div class="progress-bar"><div class="progress" style="width: 75%"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>My Projects</h2>
+
+        <div class="project">
+            <h3>📜 Money Heist c++ Quiz Application</h3>
+            <p>A C++ story-driven quiz game that challenges players with puzzles and coding problems to save the land.</p>
+        </div>
+
+        <div class="project">
+            <h3>📦 Point of Sales & Inventory System</h3>
+            <p>Desktop app with real-time stock tracking, sales management, and automated reporting.</p>
+        </div>
+
+        
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p>Email: <a href="mailto:nosiphondaba1419@gmail.com">nosipho@example.com</a></p>
+        <p>GitHub: <a href="https://github.com/Mthiyane14!" target="_blank">My GitHub</a></p>
+        <p>LinkedIn: <a href="www.linkedin.com/in/nosipho-ndaba-a42219287" target="_blank">My LinkedIn</a></p>
+    </section>
+
+    <footer>
+        <p>© 2025 Nosipho. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
