@@ -12,16 +12,47 @@
             box-sizing: border-box;
             scroll-behavior: smooth;
         }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #0f172a;
-            color: white;
-            line-height: 1.6;
+        #stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2; /* behind everything */
+    background: transparent;
+}
+
+     body {
+    font-family: 'Poppins', sans-serif;
+    background: #0b0f2f; /* Dark navy base */
+    color: white;
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+ body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle, #ff80bf 1px, transparent 1px),
+                        radial-gradient(circle, #38bdf8 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            opacity: 0.6;
+            animation: twinkle 4s infinite alternate;
         }
+         @keyframes twinkle {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        
         header {
             background: linear-gradient(135deg, #4f46e5, #9333ea);
             text-align: center;
             padding: 80px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
         }
         header h1 {
             font-size: 2.8rem;
@@ -32,17 +63,20 @@
             from { text-shadow: 0 0 10px #fff, 0 0 20px #38bdf8, 0 0 30px #38bdf8; }
             to { text-shadow: 0 0 20px #9333ea, 0 0 30px #9333ea, 0 0 40px #9333ea; }
         }
+        
         header p {
             font-size: 1.1rem;
             opacity: 0.9;
         }
-        nav {
-            background: #1e293b;
+         nav {
+            background: rgba(30,41,59,0.9);
             text-align: center;
             padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 100;
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         nav a {
             color: white;
@@ -52,7 +86,7 @@
             transition: color 0.3s;
         }
         nav a:hover {
-            color: #38bdf8;
+             color: #ff80bf;
         }
         section {
             max-width: 1000px;
@@ -64,17 +98,22 @@
             margin-bottom: 20px;
             font-size: 1.8rem;
         }
+         h3 {
+            color: #ff80bf;
+            margin-bottom: 15px;
+        }
         /* Project Cards */
         .project {
-            background: #1e293b;
+            background: rgba(30,41,59,0.8);
             padding: 20px;
             margin-bottom: 20px;
-            border-radius: 10px;
+            border-radius: 15px;
             transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
         .project:hover {
             transform: translateY(-5px);
-            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.5);
+            box-shadow: 0 10px 30px rgba(255,128,191,0.5);
         }
         /* Skills */
         .skills {
@@ -94,7 +133,7 @@
         }
         .progress {
             height: 12px;
-            background: linear-gradient(90deg, #38bdf8, #9333ea);
+            background: linear-gradient(90deg, #ff80bf, #38bdf8);
             width: 0;
             animation: fill 2s forwards;
         }
@@ -102,15 +141,17 @@
             from { width: 0; }
         }
         footer {
-            background: #1e293b;
+              background: rgba(30,41,59,0.9);
             text-align: center;
             padding: 15px;
             margin-top: 30px;
             font-size: 0.9rem;
             color: #94a3b8;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
+            
         a {
-            color: #38bdf8;
+            color: ;#ff80bf
         }
         @media (max-width: 600px) {
             header h1 {
@@ -120,21 +161,28 @@
        .cv-btn {
     display: inline-block;
     padding: 10px 20px;
-    background: linear-gradient(135deg, #38bdf8, #9333ea);
+    background: linear-gradient(135deg, #ff80bf, #38bdf8);
     color: white;
-    border-radius: 8px;
+    border-radius: 12px;
     text-decoration: none;
     font-weight: 600;
     transition: transform 0.2s, box-shadow 0.2s;
 }
 .cv-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.4);
+    box-shadow: 0 4px 12px rgba(255,128,191,0.4);
 }
-
+ /* Home Section Image */
+        #home img {
+            max-width: 200px;
+            border-radius: 50%;
+            border: 3px solid white;
+            margin-top: 30px;
+        }
     </style>
 </head>
 <body>
+<canvas id="stars"></canvas>
 
     <header>
         <h1>Step into my World!</h1>
@@ -244,7 +292,7 @@
        <p>LinkedIn: <a href="https://www.linkedin.com/in/nosipho-ndaba-a42219287" target="_blank">My LinkedIn Account</a></p>
    
     <p>
-        <a href="index.html/NOSIPHO NDABA_CV.pdf" download class="cv-btn"> Download My CV</a>
+        <a href="index.html/nosipho ndaba_cv.pdf" download class="cv-btn"> Download My CV</a>
     </p>
     
     </section>
@@ -252,9 +300,65 @@
     <footer>
         <p>© 2025 Nosipho. All rights reserved.</p>
     </footer>
+<script>
+  const canvas = document.getElementById("stars");
+  const ctx = canvas.getContext("2d");
+
+  let stars = [];
+  const numStars = 150;
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener("resize", resizeCanvas);
+  resizeCanvas();
+
+  function createStars() {
+    stars = [];
+    for (let i = 0; i < numStars; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 1.5,
+        speed: Math.random() * 0.5 + 0.2
+      });
+    }
+  }
+
+  function drawStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#fff";
+    stars.forEach(star => {
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      ctx.fill();
+    });
+  }
+
+  function updateStars() {
+    stars.forEach(star => {
+      star.y += star.speed;
+      if (star.y > canvas.height) {
+        star.y = 0;
+        star.x = Math.random() * canvas.width;
+      }
+    });
+  }
+
+  function animate() {
+    drawStars();
+    updateStars();
+    requestAnimationFrame(animate);
+  }
+
+  createStars();
+  animate();
+</script>
 
 </body>
 </html>
+
 
 
 
